@@ -147,6 +147,9 @@ class ConnectycubeFlutterCallKitPlugin : FlutterPlugin, MethodCallHandler,
                         .map { it.toInt() })
                     val userInfo = arguments["user_info"] as String
 
+                    val acceptText = arguments["accept_text"] as String
+                    val rejectText = arguments["reject_text"] as String
+
                     showCallNotification(
                         applicationContext!!,
                         callId,
@@ -154,6 +157,8 @@ class ConnectycubeFlutterCallKitPlugin : FlutterPlugin, MethodCallHandler,
                         callInitiatorId,
                         callInitiatorName,
                         callOpponents,
+                        acceptText,
+                        rejectText,
                         userInfo
                     )
 

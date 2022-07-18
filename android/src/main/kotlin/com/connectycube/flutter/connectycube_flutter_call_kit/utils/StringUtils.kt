@@ -22,14 +22,20 @@ fun getStringResource(context: Context, name: String?): String? {
     )
 }
 
-fun getColorizedText(string: String, colorHex: String): Spannable {
+fun getColorizedText(string: String, backgroundHex: String, foregroundHex: String): Spannable {
     val spannable: Spannable = SpannableString(string)
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
         spannable.setSpan(
-            ForegroundColorSpan(Color.parseColor(colorHex)),
-            0,
-            spannable.length,
-            Spanned.SPAN_INCLUSIVE_EXCLUSIVE
+                ForegroundColorSpan(Color.parseColor(foregroundHex)),
+                0,
+                spannable.length,
+                Spanned.SPAN_INCLUSIVE_EXCLUSIVE
+        )
+        spannable.setSpan(
+                BackgroundColorSpan(Color.parseColor(backgroundHex)),
+                0,
+                spannable.length,
+                Spanned.SPAN_INCLUSIVE_EXCLUSIVE
         )
     }
     return spannable

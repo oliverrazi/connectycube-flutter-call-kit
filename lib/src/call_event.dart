@@ -14,6 +14,8 @@ class CallEvent {
     required this.callerId,
     required this.callerName,
     required this.opponentsIds,
+    required this.acceptText,
+    required this.rejectText,
     this.userInfo,
   });
 
@@ -22,6 +24,8 @@ class CallEvent {
   final int callerId;
   final String callerName;
   final Set<int> opponentsIds;
+  final String acceptText;
+  final String rejectText;
 
   /// Used for exchanging additional data between the Call notification and your app,
   /// you will get this data in event callbacks (e.g. onCallAcceptedWhenTerminated,
@@ -43,6 +47,8 @@ class CallEvent {
       callerId: callerId ?? this.callerId,
       callerName: callerName ?? this.callerName,
       opponentsIds: opponentsIds ?? this.opponentsIds,
+      acceptText: acceptText ?? this.acceptText,
+      rejectText: rejectText ?? this.rejectText,
       userInfo: userInfo ?? this.userInfo,
     );
   }
@@ -54,6 +60,8 @@ class CallEvent {
       'caller_id': callerId,
       'caller_name': callerName,
       'call_opponents': opponentsIds.join(','),
+      'accept_text': acceptText,
+      'reject_text': rejectText,
       'user_info': jsonEncode(userInfo ?? <String, String>{}),
     };
   }
@@ -65,6 +73,8 @@ class CallEvent {
       callType: map['call_type'] as int,
       callerId: map['caller_id'] as int,
       callerName: map['caller_name'] as String,
+      acceptText: map['accept_text'] as String,
+      rejectText: map['reject_text'] as String,
       opponentsIds:
       (map['call_opponents'] as String).split(',').map(int.parse).toSet(),
       userInfo: map['user_info'] != null

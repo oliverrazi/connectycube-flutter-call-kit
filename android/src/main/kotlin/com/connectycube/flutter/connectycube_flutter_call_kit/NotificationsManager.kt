@@ -30,7 +30,8 @@ fun cancelCallNotification(context: Context, callId: String) {
 
 fun showCallNotification(
     context: Context, callId: String, callType: Int, callInitiatorId: Int,
-    callInitiatorName: String, callOpponents: ArrayList<Int>, userInfo: String
+    callInitiatorName: String, callOpponents: ArrayList<Int>,
+    acceptText: String, rejectText: String, userInfo: String
 ) {
     val notificationManager = NotificationManagerCompat.from(context)
 
@@ -72,7 +73,8 @@ fun showCallNotification(
         callInitiatorId,
         callInitiatorName,
         callOpponents,
-        userInfo
+        userInfo,
+        rejectText
     )
     addCallAcceptAction(
         context,
@@ -82,7 +84,8 @@ fun showCallNotification(
         callInitiatorId,
         callInitiatorName,
         callOpponents,
-        userInfo
+        userInfo,
+        acceptText
     )
 
     // Add full screen intent (to show on lock screen)
@@ -156,7 +159,8 @@ fun addCallRejectAction(
     callInitiatorId: Int,
     callInitiatorName: String,
     opponents: ArrayList<Int>,
-    userInfo: String
+    userInfo: String,
+    text: String
 ) {
     val bundle = Bundle()
     bundle.putString(EXTRA_CALL_ID, callId)
@@ -180,7 +184,7 @@ fun addCallRejectAction(
             "drawable",
             context.packageName
         ),
-        getColorizedText("Reject", "#E02B00"),
+        getColorizedText(text, "#FFFFFF", "#4CB050"),
         declinePendingIntent
     )
         .build()
@@ -196,7 +200,8 @@ fun addCallAcceptAction(
     callInitiatorId: Int,
     callInitiatorName: String,
     opponents: ArrayList<Int>,
-    userInfo: String
+    userInfo: String,
+    text: String
 ) {
     val bundle = Bundle()
     bundle.putString(EXTRA_CALL_ID, callId)
@@ -216,7 +221,7 @@ fun addCallAcceptAction(
     )
     val acceptAction: NotificationCompat.Action = NotificationCompat.Action.Builder(
         context.resources.getIdentifier("ic_menu_call", "drawable", context.packageName),
-        getColorizedText("Accept", "#4CB050"),
+        getColorizedText(text, "#FFFFFF", "#000000"),
         acceptPendingIntent
     )
         .build()
