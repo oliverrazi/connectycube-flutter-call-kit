@@ -29,9 +29,9 @@ fun cancelCallNotification(context: Context, callId: String) {
 }
 
 fun showCallNotification(
-    context: Context, callId: String, callTitle: String, callType: Int, callInitiatorId: Int,
+    context: Context, callId: String, callTitle: String?, callType: Int, callInitiatorId: Int,
     callInitiatorName: String, callOpponents: ArrayList<Int>,
-    acceptText: String, rejectText: String, userInfo: String
+    acceptText: String?, rejectText: String?, userInfo: String
 ) {
     val notificationManager = NotificationManagerCompat.from(context)
 
