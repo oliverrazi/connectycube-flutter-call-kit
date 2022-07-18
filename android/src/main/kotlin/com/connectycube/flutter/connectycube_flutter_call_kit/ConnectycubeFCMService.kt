@@ -51,7 +51,7 @@ class ConnectycubeFCMService : FirebaseMessagingService() {
             return
         }
 
-        val callTitle : data["call_title"];
+        val callTitle = data["call_title"].toString();
         val callType = data["call_type"]?.toInt()
         val callInitiatorId = data["caller_id"]?.toInt()
         val callInitiatorName = data["caller_name"]
@@ -60,8 +60,8 @@ class ConnectycubeFCMService : FirebaseMessagingService() {
         if (callOpponentsString != null) {
             callOpponents = ArrayList(callOpponentsString.split(',').map { it.toInt() })
         }
-        val acceptText : data["accept_text"];
-        val rejectText : data["reject_text"];
+        val acceptText = data["accept_text"].toString();
+        val rejectText = data["reject_text"].toString();
 
         val userInfo = data["user_info"] ?: JSONObject(emptyMap<String, String>()).toString()
 
