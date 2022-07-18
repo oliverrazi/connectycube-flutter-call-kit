@@ -8,6 +8,7 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextUtils
 import android.text.style.ForegroundColorSpan
+import android.text.style.BackgroundColorSpan
 import org.json.JSONArray
 import org.json.JSONObject
 import java.lang.Exception
