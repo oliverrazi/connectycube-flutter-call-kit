@@ -37,10 +37,13 @@ class CallEvent {
 
   CallEvent copyWith({
     String? sessionId,
+    String? callTitle,
     int? callType,
     int? callerId,
     String? callerName,
     Set<int>? opponentsIds,
+    String? acceptText,
+    String? rejectText,
     Map<String, String>? userInfo,
   }) {
     return CallEvent(
