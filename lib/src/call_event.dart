@@ -10,6 +10,7 @@ class CallEvent {
   /// {@macro call_event}
   const CallEvent({
     required this.sessionId,
+    required this.callTitle,
     required this.callType,
     required this.callerId,
     required this.callerName,
@@ -20,6 +21,7 @@ class CallEvent {
   });
 
   final String sessionId;
+  final String callTitle;
   final int callType;
   final int callerId;
   final String callerName;
@@ -43,6 +45,7 @@ class CallEvent {
   }) {
     return CallEvent(
       sessionId: sessionId ?? this.sessionId,
+      callTitle: callTitle ?? this.callTitle,
       callType: callType ?? this.callType,
       callerId: callerId ?? this.callerId,
       callerName: callerName ?? this.callerName,
@@ -56,6 +59,7 @@ class CallEvent {
   Map<String, Object?> toMap() {
     return {
       'session_id': sessionId,
+      'call_title': callTitle,
       'call_type': callType,
       'caller_id': callerId,
       'caller_name': callerName,
@@ -70,6 +74,7 @@ class CallEvent {
     print('[CallEvent.fromMap] map: $map');
     return CallEvent(
       sessionId: map['session_id'] as String,
+      callTitle: map['call_title'] as String,
       callType: map['call_type'] as int,
       callerId: map['caller_id'] as int,
       callerName: map['caller_name'] as String,

@@ -29,7 +29,7 @@ fun cancelCallNotification(context: Context, callId: String) {
 }
 
 fun showCallNotification(
-    context: Context, callId: String, callType: Int, callInitiatorId: Int,
+    context: Context, callId: String, callTitle: String, callType: Int, callInitiatorId: Int,
     callInitiatorName: String, callOpponents: ArrayList<Int>,
     acceptText: String, rejectText: String, userInfo: String
 ) {
@@ -59,7 +59,7 @@ fun showCallNotification(
     Log.d("NotificationsManager", "ringtone 2 $ringtone")
 
     val callTypeTitle =
-        String.format(CALL_TYPE_PLACEHOLDER, if (callType == 1) "Video" else "Audio")
+        callTitle
 
     val builder: NotificationCompat.Builder =
         createCallNotification(context, callInitiatorName, callTypeTitle, pendingIntent, ringtone)

@@ -139,6 +139,7 @@ class ConnectycubeFlutterCallKitPlugin : FlutterPlugin, MethodCallHandler,
                         return
                     }
 
+                    val callTitle = arguments["call_title"] as String
                     val callType = arguments["call_type"] as Int
                     val callInitiatorId = arguments["caller_id"] as Int
                     val callInitiatorName = arguments["caller_name"] as String
@@ -153,6 +154,7 @@ class ConnectycubeFlutterCallKitPlugin : FlutterPlugin, MethodCallHandler,
                     showCallNotification(
                         applicationContext!!,
                         callId,
+                        callTitle,
                         callType,
                         callInitiatorId,
                         callInitiatorName,
