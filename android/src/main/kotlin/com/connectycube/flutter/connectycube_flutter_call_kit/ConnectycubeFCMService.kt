@@ -51,6 +51,7 @@ class ConnectycubeFCMService : FirebaseMessagingService() {
             return
         }
 
+        var callTitle = data["call_title"];
         val callType = data["call_type"]?.toInt()
         val callInitiatorId = data["caller_id"]?.toInt()
         val callInitiatorName = data["caller_name"]
@@ -59,6 +60,8 @@ class ConnectycubeFCMService : FirebaseMessagingService() {
         if (callOpponentsString != null) {
             callOpponents = ArrayList(callOpponentsString.split(',').map { it.toInt() })
         }
+        var acceptText = data["accept_text"];
+        var rejectText = data["reject_text"]
 
         val userInfo = data["user_info"] ?: JSONObject(emptyMap<String, String>()).toString()
 
@@ -69,11 +72,14 @@ class ConnectycubeFCMService : FirebaseMessagingService() {
         showCallNotification(
             applicationContext,
             callId,
+            callTitle,
             callType,
             callInitiatorId,
             callInitiatorName,
             callOpponents,
-            userInfo
+            userInfo,
+            acceptText,
+            rejectText
         )
 
         saveCallState(applicationContext, callId, CALL_STATE_PENDING)
